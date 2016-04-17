@@ -32,17 +32,25 @@ var displayResult = function(result) {
 
 var host = "192.168.0.9",
     username = "cUbhu5QBLX-R-TNNhDqKQAD2VAwoVDOtBUf56TNb",
-    api = new HueApi(host, username),
-    state;
+    api = new HueApi(host, username);
 
-// Set light state to 'on' with warm white value of 500 and brightness set to 100%
-state = lightState.create().on().hue_inc(12345);
+app.post('/random', function(req, res, err) {
+  console.log(req.body);
+  console.log(typeof req.body.random);
+  if (req.body.random == '1') {
+    console.log('random lights going');
+    var newHue = Math.floor(Math.random()*65536);
+    // Set light state to 'on' with warm white value of 500 and brightness set to 100%
+    var state = lightState.create().on().hue_inc(newHue);
 
-// --------------------------
-// Using a promise
-api.setLightState(1, state)
-    .then(displayResult)
-    .done();
+    // --------------------------
+    // Using a promise
+    api.setLightState(1, state)
+        .then(displayResult)
+        .done();
+  }
+})
+
 
 
 app.use('/', routes);
