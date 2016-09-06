@@ -51,7 +51,7 @@ app.post('/random', function(req, res, err) {
         .then(displayResult)
         .done();
   }
-})
+});
 
 
 

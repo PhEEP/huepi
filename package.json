@@ -11,10 +11,9 @@
     "debug": "~2.2.0",
     "es6-promise": "^3.1.2",
     "express": "~4.13.1",
-    "jade": "~1.11.0",
     "morgan": "~1.6.1",
     "node-hue-api": "^2.2.0",
-    "pug": "^2.0.0-alpha4",
+    "pug": "^2.0.0-beta6",
     "serve-favicon": "~2.3.0"
   }
 }
