@@ -1,8 +1,29 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  color:#dadada;
+  background-color:#333;
 }
 
 a {
   color: #00B7FF;
+}
+.container {
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.button {
+  color: #333;
+  background-color:#2cbbda;
+  border:none;
+  padding:.45rem;
+  -webkit-box-shadow: 0px 2px 2px #333;
+  box-shadow: 0px 2px 2px #333;
+  cursor:pointer;
+}
+.lightvalue {
+  padding:1rem;
+  border-radius:1rem;
+  color:#333;
 }

@@ -3,4 +3,17 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
-  button#random Random
+  button#getUserId Get User ID
+  .container
+    each light in lights
+      - var lightob = light
+      - var r = lightob.rgb[0]
+      - var g = lightob.rgb[1]
+      - var b = lightob.rgb[2]
+      -var id = lightob.id
+      -var name = lightob.name
+      - console.log(rgb)
+      .item
+        h2 #{light.name}
+        p.lightvalue(style='background-color:rgb('+r+','+g+','+b+')', alt='#{light.rgb}') #{light.rgb}
+        button.button.random(data-id=id) Randomize Me
