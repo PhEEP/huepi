@@ -41,16 +41,28 @@ var host = "192.168.0.15",
 app.post('/random', function(req, res, err) {
     console.log(req.body);
     var light = req.body.id;
-        console.log('random lights going');
-        var newHue = Math.floor(Math.random() * 65536);
-        // Set light state to 'on' with warm white value of 500 and brightness set to 100%
-        var state = lightState.create().on().hue_inc(newHue);
+    console.log('random lights going');
+    var newHue = Math.floor(Math.random() * 65536);
+    // Set light state to 'on' with warm white value of 500 and brightness set to 100%
+    var state = lightState.create().on().hue_inc(newHue);
 
-        // --------------------------
-        // Using a promise
-        api.setLightState(light, state)
-            .then(displayResult)
-            .done();
+    // --------------------------
+    // Using a promise
+    api.setLightState(light, state, function(err, lights) {
+      if (err) {
+        console.log(err);
+      } else {
+        api.lightStatus(light, function(err, result) {
+          if (err) {
+            console.log(err);
+          } else {
+            var newRGB = api.getRGBfromXY(result.state.xy[0], result.state.xy[1], result.state.bri);
+            res.send(newRGB);
+            console.log(newRGB);
+          }
+        });
+      }
+    });
 });
 
 app.post('/getUserID', function(req, res, err) {

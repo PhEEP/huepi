@@ -10,8 +10,11 @@ $('.light').on('click', function(e) {
 });
 $('.random').on('click', function(e) {
   e.preventDefault();
+  var myID = $(this).data('id');
   $.post('/random', {id: $(this).data('id')}, function(data, textStatus, xhr) {
-    console.log(data);
+    console.log('rgb('+data[0]+','+data[1]+','+data[2]+')');
+    console.log($('#'+myID));
+    $('#'+myID).siblings('.lightvalue').css('background','rgb('+data[0]+','+data[1]+','+data[2]+')');
   });
 });
 $('#getUserId').on('click',function() {
